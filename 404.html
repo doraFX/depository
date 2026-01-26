@@ -39,6 +39,10 @@
 							sans: [
 								'Noto Sans SC', 'Noto Sans JP', 'Noto Sans KR', 'Noto Sans', 'sans-serif',
 							],
+							mono: [
+								'ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', '"Liberation Mono"',
+								'"Courier New"', 'monospace'
+							],
 						},
 						colors: {
 							primary: {
@@ -78,6 +82,7 @@
 							<img src="images/logo.webp" alt="企鹅企企 Logo" class="w-8 h-8 rounded-lg object-contain" />
 							<span>{{ t('brand') }}</span>
 						</a>
+
 
 						<!-- Right Actions -->
 						<div class="flex items-center gap-3">
@@ -130,6 +135,7 @@
 					</div>
 				</div>
 
+				<!-- Mobile Menu（nav 去掉了的话，这块也可以删；我先留空，避免报错） -->
 				<div v-if="showMobileMenu"
 					class="md:hidden bg-white dark:bg-neutral-950 border-t border-neutral-200 dark:border-neutral-800">
 					<nav class="px-4 py-4 space-y-2">
@@ -153,10 +159,10 @@
 					</div>
 				</Transition>
 
+				<!-- ✅ 空 section：你后面替换成 Depository / 404 内容 -->
 				<section class="min-h-[calc(100vh-64px)] flex items-center">
-
 					<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-16">
-						<div class="max-w-3xl mx-auto">
+						<div class="max-w-3xl mx-auto text-center">
 							<div class="max-sm:hidden flex items-center justify-center">
 								<div
 									class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-neutral-100 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 text-xs text-neutral-600 dark:text-neutral-300">
@@ -172,30 +178,38 @@
 
 							<div
 								class="mt-6 rounded-[28px] border border-neutral-200 dark:border-neutral-800 bg-white/70 dark:bg-neutral-900/60 backdrop-blur-xl shadow-[0_22px_70px_rgba(0,0,0,0.10)] overflow-hidden">
-								<div class="p-8 sm:p-10">
-									<div
-										class="inline-flex items-center gap-2 px-3 py-1.5 rounded-md bg-[#F2F2F2] dark:bg-[#1C1C1E] mb-6">
-										<span class="w-1.5 h-1.5 bg-[#3098ff] rounded-full"></span>
-										<span class="text-[11px] font-bold text-neutral-900 dark:text-white uppercase">
-											{{ t('page.badge') }}
-										</span>
+								<div class="p-10">
+									<div class="text-6xl sm:text-7xl sm:mb-2 md:text-8xl md:mb-2 lg:text-[120px] lg:mb-4
+									    font-black tracking-tight font-mono
+									    bg-clip-text text-transparent
+									    bg-gradient-to-r from-primary-400 via-sky-500 to-indigo-500
+									    drop-shadow-[0_6px_24px_rgba(56,189,248,0.35)]">
+										404
 									</div>
 
-									<h1 class="text-3xl sm:text-5xl font-bold">
+									<div class="mt-3 text-xl sm:text-2xl font-semibold">
 										{{ t('page.title') }}
-									</h1>
+									</div>
 
 									<p class="mt-4 text-neutral-600 dark:text-neutral-400 leading-relaxed">
 										{{ t('page.desc') }}
 									</p>
 
-									<div class="mt-8 flex flex-col sm:flex-row gap-3">
+									<div class="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
 										<a :href="homeUrl"
 											class="inline-flex items-center justify-center px-6 py-3 rounded-full bg-neutral-900 dark:bg-white text-white dark:text-neutral-900 font-semibold hover:opacity-90 transition">
 											{{ t('page.goHome') }}
 										</a>
+
+										<a :href="contactUrl"
+											class="inline-flex items-center justify-center px-6 py-3 rounded-full bg-white/60 dark:bg-neutral-800/60 backdrop-blur-md border border-neutral-200 dark:border-neutral-700 hover:bg-white dark:hover:bg-neutral-800 transition font-medium">
+											{{ t('page.goContact') }}
+										</a>
 									</div>
 
+									<div class="mt-8 text-xs text-neutral-400">
+										{{ t('page.tip') }}
+									</div>
 								</div>
 							</div>
 						</div>
@@ -295,10 +309,11 @@
 						where: "你现在在：",
 						copy: "复制",
 						copied: "已复制",
-						badge: "DEPOSITORY",
-						title: "这里是 check.dorafx.top",
-						desc: "用于存放 / 校验 / 临时分享的静态资源入口页。",
+						title: "页面不存在",
+						desc: "很抱歉，你访问的地址不存在。你可以返回网站主页，或联系我反馈这个问题。",
 						goHome: "返回主页",
+						goContact: "反馈问题",
+						tip: "如果你是手动输入链接的，请检查链接是否正确、完整。",
 					}
 				},
 				en: {
@@ -319,10 +334,11 @@
 						where: "You are here:",
 						copy: "Copy",
 						copied: "Copied",
-						badge: "DEPOSITORY",
-						title: "This is check.dorafx.top",
-						desc: "A landing page for storing, checking, and sharing static assets.",
+						title: "Page not found",
+						desc: "Sorry, the address you're trying to visit doesn't exist. You can go back to the homepage, or contact me to report the issue.",
 						goHome: "Back to Home",
+						goContact: "Report an Issue",
+						tip: "If you typed the URL manually, please check that it's correct and complete.",
 					}
 				},
 				ja: {
@@ -343,10 +359,11 @@
 						where: "現在地：",
 						copy: "コピー",
 						copied: "コピー済み",
-						badge: "DEPOSITORY",
-						title: "ここは check.dorafx.top",
-						desc: "保管・検証・共有用の静的リソース入口ページです。",
+						title: "ページが見つかりません",
+						desc: "申し訳ありませんが、お探しのページは存在しません。ホームに戻るか、不具合の報告としてご連絡ください。",
 						goHome: "ホームへ戻る",
+						goContact: "問題を報告する",
+						tip: "URL を手入力した場合は、正しく完全に入力されているかご確認ください。",
 					}
 				},
 				ko: {
@@ -367,10 +384,11 @@
 						where: "현재 위치:",
 						copy: "복사",
 						copied: "복사됨",
-						badge: "DEPOSITORY",
-						title: "여기는 check.dorafx.top",
-						desc: "정적 리소스를 보관/검증/공유하는 저장소의 입구 페이지입니다.",
+						title: "페이지를 찾을 수 없음",
+						desc: "죄송합니다. 요청하신 주소는 존재하지 않습니다. 홈페이지로 돌아가거나, 문제를 제보해 주세요.",
 						goHome: "홈으로 돌아가기",
+						goContact: "문제 제보하기",
+						tip: "URL을 직접 입력했다면, 주소가 올바르고 완전한지 확인해 주세요.",
 					}
 				}
 			};
@@ -440,7 +458,7 @@
 						} catch (e) {}
 					};
 
-					// ====== where / copy ======
+
 					const whereText = ref("");
 					const copied = ref(false);
 
@@ -462,10 +480,7 @@
 						} catch (e) {}
 					};
 
-					// repoUrl（保持跟你之前思路一致）
 					const repoUrl = computed(() => window.location.origin + "/");
-
-
 
 					// ===== init =====
 					onMounted(() => {
@@ -489,7 +504,7 @@
 						refreshWhere();
 						window.addEventListener("hashchange", refreshWhere);
 						window.addEventListener("popstate", refreshWhere);
-						
+
 						isPageLoading.value = false;
 					});
 
@@ -509,11 +524,12 @@
 						toggleTheme,
 						// const
 						homeUrl,
+						contactUrl,
 						whereText,
 						copied,
 						copyWhere,
-						repoUrl,
-						contactUrl
+						repoUrl
+
 					};
 				}
 			}).mount('#app');

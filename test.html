@@ -9,6 +9,9 @@
 		<script src="vue.global.js"></script>
 		<script src="tailwindcss.3.4.17.js"></script>
 
+		<link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.7.2/css/all.css">
+		<link rel="stylesheet" href="css/remixicon.css" />
+
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link
@@ -79,6 +82,13 @@
 							<span>{{ t('brand') }}</span>
 						</a>
 
+						<!-- ✅ 你说“可以不加 nav bar”：这里直接注释掉 -->
+						<!--
+          <nav class="hidden md:flex items-center gap-8">
+            ...
+          </nav>
+          -->
+
 						<!-- Right Actions -->
 						<div class="flex items-center gap-3">
 							<!-- Language Switcher -->
@@ -130,6 +140,7 @@
 					</div>
 				</div>
 
+				<!-- Mobile Menu（nav 去掉了的话，这块也可以删；我先留空，避免报错） -->
 				<div v-if="showMobileMenu"
 					class="md:hidden bg-white dark:bg-neutral-950 border-t border-neutral-200 dark:border-neutral-800">
 					<nav class="px-4 py-4 space-y-2">
@@ -153,54 +164,9 @@
 					</div>
 				</Transition>
 
+				<!-- ✅ 空 section：你后面替换成 Depository / 404 内容 -->
 				<section class="min-h-[calc(100vh-64px)] flex items-center">
-
-					<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-16">
-						<div class="max-w-3xl mx-auto">
-							<div class="max-sm:hidden flex items-center justify-center">
-								<div
-									class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-neutral-100 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 text-xs text-neutral-600 dark:text-neutral-300">
-									<span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
-									<span>{{ t('page.where') }}</span>
-									<span class="truncate max-w-[64vw]">{{ whereText }}</span>
-									<button @click="copyWhere"
-										class="ml-1 px-2 py-0.5 rounded-full bg-white/70 dark:bg-neutral-800/70 border border-neutral-200 dark:border-neutral-700 hover:bg-white dark:hover:bg-neutral-800 transition">
-										{{ copied ? t('page.copied') : t('page.copy') }}
-									</button>
-								</div>
-							</div>
-
-							<div
-								class="mt-6 rounded-[28px] border border-neutral-200 dark:border-neutral-800 bg-white/70 dark:bg-neutral-900/60 backdrop-blur-xl shadow-[0_22px_70px_rgba(0,0,0,0.10)] overflow-hidden">
-								<div class="p-8 sm:p-10">
-									<div
-										class="inline-flex items-center gap-2 px-3 py-1.5 rounded-md bg-[#F2F2F2] dark:bg-[#1C1C1E] mb-6">
-										<span class="w-1.5 h-1.5 bg-[#3098ff] rounded-full"></span>
-										<span class="text-[11px] font-bold text-neutral-900 dark:text-white uppercase">
-											{{ t('page.badge') }}
-										</span>
-									</div>
-
-									<h1 class="text-3xl sm:text-5xl font-bold">
-										{{ t('page.title') }}
-									</h1>
-
-									<p class="mt-4 text-neutral-600 dark:text-neutral-400 leading-relaxed">
-										{{ t('page.desc') }}
-									</p>
-
-									<div class="mt-8 flex flex-col sm:flex-row gap-3">
-										<a :href="homeUrl"
-											class="inline-flex items-center justify-center px-6 py-3 rounded-full bg-neutral-900 dark:bg-white text-white dark:text-neutral-900 font-semibold hover:opacity-90 transition">
-											{{ t('page.goHome') }}
-										</a>
-									</div>
-
-								</div>
-							</div>
-						</div>
-					</div>
-
+					<!-- EMPTY -->
 				</section>
 			</main>
 
@@ -235,7 +201,7 @@
 							<h4 class="font-semibold mb-4">{{ t('footer.connect') }}</h4>
 							<ul class="space-y-2 text-sm">
 								<li>
-									<a :href="contactUrl"
+									<a :href="homeUrl"
 										class="text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors">
 										{{ t('nav.contact') }}
 									</a>
@@ -276,6 +242,7 @@
 				onMounted
 			} = Vue;
 
+			// ✅ 这里先放“占位 translations”，任务二我会分别给你 Depository/404 的版本
 			const translations = {
 				zh: {
 					brand: "企鹅企企",
@@ -284,22 +251,13 @@
 						contact: "联系"
 					},
 					footer: {
-						desc: "独立开发者，专注于数字媒体与应用开发。",
-						quickLinks: "快速链接",
-						connect: "联系方式"
+						desc: "DoraFX 的个人站点与作品集。",
+						quickLinks: "快捷链接",
+						connect: "联系"
 					},
 					about: {
-						nickname: "企鹅企企"
+						nickname: "DoraFX"
 					},
-					page: {
-						where: "你现在在：",
-						copy: "复制",
-						copied: "已复制",
-						badge: "DEPOSITORY",
-						title: "这里是 check.dorafx.top",
-						desc: "用于存放 / 校验 / 临时分享的静态资源入口页。",
-						goHome: "返回主页",
-					}
 				},
 				en: {
 					brand: "Peng-QiQi",
@@ -308,22 +266,13 @@
 						contact: "Contact"
 					},
 					footer: {
-						desc: "Independent developer focused on digital media and application development.",
+						desc: "DoraFX personal site & portfolio.",
 						quickLinks: "Quick Links",
 						connect: "Connect"
 					},
 					about: {
-						nickname: "Peng-QiQi"
+						nickname: "DoraFX"
 					},
-					page: {
-						where: "You are here:",
-						copy: "Copy",
-						copied: "Copied",
-						badge: "DEPOSITORY",
-						title: "This is check.dorafx.top",
-						desc: "A landing page for storing, checking, and sharing static assets.",
-						goHome: "Back to Home",
-					}
 				},
 				ja: {
 					brand: "ペンギン企企",
@@ -332,22 +281,13 @@
 						contact: "連絡"
 					},
 					footer: {
-						desc: "デジタルメディアとアプリケーション開発に注力するインディペンデントデベロッパー。",
-						quickLinks: "クイックリンク",
-						connect: "連絡",
+						desc: "DoraFX の個人サイト＆ポートフォリオ。",
+						quickLinks: "クイック",
+						connect: "連絡"
 					},
 					about: {
-						nickname: "ペンギン企企"
+						nickname: "DoraFX"
 					},
-					page: {
-						where: "現在地：",
-						copy: "コピー",
-						copied: "コピー済み",
-						badge: "DEPOSITORY",
-						title: "ここは check.dorafx.top",
-						desc: "保管・検証・共有用の静的リソース入口ページです。",
-						goHome: "ホームへ戻る",
-					}
 				},
 				ko: {
 					brand: "펭귄 치치",
@@ -356,23 +296,14 @@
 						contact: "연락"
 					},
 					footer: {
-						desc: "디지털 미디어와 애플리케이션 개발에 집중하는 독립 개발자.",
-						quickLinks: "빠른 링크",
-						connect: "연결"
+						desc: "DoraFX 개인 사이트 & 포트폴리오.",
+						quickLinks: "바로가기",
+						connect: "연락"
 					},
 					about: {
-						nickname: "펭귄 치치"
+						nickname: "DoraFX"
 					},
-					page: {
-						where: "현재 위치:",
-						copy: "복사",
-						copied: "복사됨",
-						badge: "DEPOSITORY",
-						title: "여기는 check.dorafx.top",
-						desc: "정적 리소스를 보관/검증/공유하는 저장소의 입구 페이지입니다.",
-						goHome: "홈으로 돌아가기",
-					}
-				}
+				},
 			};
 
 			createApp({
@@ -384,11 +315,10 @@
 					const showMobileMenu = ref(false);
 
 					// ✅ 你要求保留
-					const isPageLoading = ref(true);
+					const isPageLoading = ref(false);
 
 					// ===== constants =====
 					const homeUrl = "https://dorafx.top/";
-					const contactUrl = "https://dorafx.top/#contact";
 
 					// ===== i18n =====
 					const languages = [{
@@ -440,33 +370,6 @@
 						} catch (e) {}
 					};
 
-					// ====== where / copy ======
-					const whereText = ref("");
-					const copied = ref(false);
-
-					const refreshWhere = () => {
-						const {
-							origin,
-							pathname,
-							search,
-							hash
-						} = window.location;
-						whereText.value = `${origin}${pathname}${search}${hash}`;
-					};
-
-					const copyWhere = async () => {
-						try {
-							await navigator.clipboard.writeText(whereText.value);
-							copied.value = true;
-							setTimeout(() => (copied.value = false), 1200);
-						} catch (e) {}
-					};
-
-					// repoUrl（保持跟你之前思路一致）
-					const repoUrl = computed(() => window.location.origin + "/");
-
-
-
 					// ===== init =====
 					onMounted(() => {
 						// lang
@@ -485,12 +388,6 @@
 							isDark.value = savedTheme ? (savedTheme === 'dark') : prefersDark;
 						} catch (e) {}
 						document.documentElement.classList.toggle('dark', isDark.value);
-
-						refreshWhere();
-						window.addEventListener("hashchange", refreshWhere);
-						window.addEventListener("popstate", refreshWhere);
-						
-						isPageLoading.value = false;
 					});
 
 					return {
@@ -509,11 +406,6 @@
 						toggleTheme,
 						// const
 						homeUrl,
-						whereText,
-						copied,
-						copyWhere,
-						repoUrl,
-						contactUrl
 					};
 				}
 			}).mount('#app');
