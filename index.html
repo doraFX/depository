@@ -62,6 +62,32 @@
 			[v-cloak] {
 				display: none;
 			}
+			
+			/* Smooth scrolling */
+			html {
+				scrollbar-gutter: stable;
+				scroll-behavior: smooth;
+			}
+			
+			/* Custom scrollbar */
+			::-webkit-scrollbar {
+				width: 6px;
+				height: 6px;
+			}
+			
+			::-webkit-scrollbar-track {
+				background: transparent;
+			}
+			
+			::-webkit-scrollbar-thumb {
+				background: #cbd5e1;
+				border-radius: 3px;
+			}
+			
+			.dark ::-webkit-scrollbar-thumb {
+				background: #475569;
+			}
+			
 		</style>
 	</head>
 
